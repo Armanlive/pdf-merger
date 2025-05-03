@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Merge PDF Files</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{{ url_for('static', filename='image/D-Logo-Black.png') }}" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="background-wrapper d-flex flex-column min-vh-100 justify-content-between">
+    <div class="container text-center text-white pt-5">
+      <h1 class="display-4 fw-bold">Merge PDF Files</h1>
+      <p class="lead">Easily combine your PDF documents into one</p>
+
+      <form id="mergeForm" method="POST" enctype="multipart/form-data" action="/merge">
+        <div class="mb-3">
+          <input type="file" name="pdfs" id="pdfs" class="form-control" multiple required>
+        </div>
+
+        <!-- Add File & Clear Buttons -->
+        <button type="button" id="addFile" class="btn btn-primary px-4 mb-2">Add File</button>
+        <button type="button" id="clearFiles" class="btn btn-danger px-4 mb-2">Clear</button>
+
+        <br><br>
+        <button type="submit" class="btn btn-warning px-4">Merge PDFs</button>
+      </form>
+    </div>
+
+    <footer class="text-center text-white mt-auto py-3 bg-dark bg-opacity-50">
+      © Arman Khan 2025 PDF Merger
+    </footer>
+  </div>
+
+  <script>
+    // Add File button logic
+    document.getElementById("addFile").addEventListener("click", function() {
+      let pdfInput = document.getElementById("pdfs");
+      let newInput = document.createElement("input");
+      newInput.type = "file";
+      newInput.name = "pdfs";
+      newInput.classList.add("form-control");
+      newInput.setAttribute("multiple", "");
+      pdfInput.parentNode.insertBefore(newInput, pdfInput.nextSibling);
+    });
+
+    // Clear button logic
+    document.getElementById("clearFiles").addEventListener("click", function() {
+      let inputs = document.querySelectorAll("input[type='file']");
+      inputs.forEach(input => input.value = "");
+    });
+
+    // Auto clear files after successful merge
+  document.getElementById("mergeForm").addEventListener("submit", function () {
+    setTimeout(function () {
+      let inputs = document.querySelectorAll("input[type='file']");
+      inputs.forEach(input => input.value = "");
+    }, 1000); // delay to allow download to begin before clearing
+  });
+  </script>
+</body>
+</html>

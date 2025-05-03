@@ -1,0 +1,28 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .background-wrapper {
+    background: url("../static/image/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    padding: 40px 20px;
+  }
+  
+  .container {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 40px 30px;
+    max-width: 600px;
+  }
+  
+  button {
+    margin: 10px 5px;
+    font-size: 16px;
+  }
+  
+  footer {
+    font-size: 14px;
+  }
+  
